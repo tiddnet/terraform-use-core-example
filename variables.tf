@@ -24,7 +24,7 @@ variable "module_state_region" {
 }
 
 variable "module_state_bucket" {
-  default = "xxxxxxxxxxxxxxxx-terraform-remote-state-storage-s3"
+  default = "scientiamobile.co.za-terraform-remote-state-storage-s3"
 }
 
 variable "module_state_key" {
@@ -40,7 +40,7 @@ variable "core_state_region" {
 }
 
 variable "core_state_bucket" {
-  default = "xxxxxxxxxxxxxxxx-terraform-remote-state-storage-s3"
+  default = "scientiamobile.co.za-terraform-remote-state-storage-s3"
 }
 
 variable "core_state_key" {
