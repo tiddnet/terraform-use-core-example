@@ -1,11 +1,14 @@
-#resource "aws_route53_record" "main" {
-#  zone_id = "${aws_route53_zone.main.zone_id}"
-#  name    = "${aws_route53_zone.main.name}"
-#  type    = "A"
-#  records = ["${aws_eip.lb.public_ip}"]
-#}
+resource "aws_route53_record" "main" {
+  zone_id = "${data.aws_route53_zone.main.zone_id}"
+  name    = "${data.aws_route53_zone.main.name}"
+  type    = "A"
+  ttl     = "300"
+  records = ["127.0.1.1"]
+}
 
-
+data "aws_route53_zone" "main" {
+  name = "pseudonet.us."
+}
 
 // Read the terraform_remote_state from the s3 bucket, and expose as core_state. 
 data "terraform_remote_state" "core_state" {
