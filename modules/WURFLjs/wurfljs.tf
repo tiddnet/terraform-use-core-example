@@ -59,6 +59,23 @@ resource "aws_elb" "WURFLjs-green" {
   connection_draining_timeout = 400
 }
 
+
+
+
+resource "aws_route53_record" "WURFLjs-green" {
+  zone_id = "${data.aws_route53_zone.main.zone_id}"
+  name    = "test2.${data.aws_route53_zone.main.name}"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [
+    "${aws_elb.WURFLjs-green.dns_name}",
+  ]
+}
+
+data "aws_route53_zone" "main" {
+  name = "scientiamobile.co.za."
+}
+
 # green
 resource "aws_launch_configuration" "WURFLjs-green" {
   name_prefix   = "WURFLjs-${var.edition}_"
