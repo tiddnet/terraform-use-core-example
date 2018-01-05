@@ -1,0 +1,97 @@
+{
+    "version": 3,
+    "terraform_version": "0.11.1",
+    "serial": 3,
+    "lineage": "79f9433c-52fe-4de7-8e11-c89e49bbd0e9",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "data.terraform_remote_state.core_state.aws_route53_delegation_set.main.id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "N92KW1GAHYQZS"
+                }
+            },
+            "resources": {
+                "aws_route53_record.main": {
+                    "type": "aws_route53_record",
+                    "depends_on": [
+                        "data.aws_route53_zone.main"
+                    ],
+                    "primary": {
+                        "id": "Z2ZGW0INBSXW3R_test.scientiamobile.co.za._A",
+                        "attributes": {
+                            "fqdn": "test.scientiamobile.co.za",
+                            "health_check_id": "",
+                            "id": "Z2ZGW0INBSXW3R_test.scientiamobile.co.za._A",
+                            "name": "test.scientiamobile.co.za",
+                            "records.#": "1",
+                            "records.3598028191": "127.0.1.1",
+                            "set_identifier": "",
+                            "ttl": "300",
+                            "type": "A",
+                            "zone_id": "Z2ZGW0INBSXW3R"
+                        },
+                        "meta": {
+                            "schema_version": "2"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.aws_route53_zone.main": {
+                    "type": "aws_route53_zone",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "Z2ZGW0INBSXW3R",
+                        "attributes": {
+                            "caller_reference": "2018-01-02T15:12:31.57610592-05:00",
+                            "comment": "Managed by Terraform",
+                            "id": "Z2ZGW0INBSXW3R",
+                            "name": "scientiamobile.co.za.",
+                            "private_zone": "false",
+                            "resource_record_set_count": "3",
+                            "zone_id": "Z2ZGW0INBSXW3R"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.aws"
+                },
+                "data.terraform_remote_state.core_state": {
+                    "type": "terraform_remote_state",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "2018-01-03 21:40:35.568625419 +0000 UTC",
+                        "attributes": {
+                            "aws_route53_delegation_set.main.id": "N92KW1GAHYQZS",
+                            "aws_route53_zone.main.id": "Z2ZGW0INBSXW3R",
+                            "aws_route53_zone.main.name": "scientiamobile.co.za.",
+                            "backend": "s3",
+                            "config.%": "4",
+                            "config.bucket": "scientiamobile.co.za-terraform-remote-state-storage-s3",
+                            "config.encrypt": "1",
+                            "config.key": "terraform/core",
+                            "config.region": "us-east-2",
+                            "environment": "default",
+                            "id": "2018-01-03 21:40:35.568625419 +0000 UTC",
+                            "vpc-ap-northeast-2.subnet_id.#": "2",
+                            "vpc-ap-northeast-2.subnet_id.0": "subnet-bfd3b6d7",
+                            "vpc-ap-northeast-2.subnet_id.1": "subnet-905d97dc"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": "provider.terraform"
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
