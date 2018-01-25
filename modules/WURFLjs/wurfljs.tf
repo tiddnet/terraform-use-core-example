@@ -1,5 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
+  version = "~>1.7"
   shared_credentials_file = "~/.aws/credentials"
   region                  = "${var.aws_region}"
 }
@@ -70,6 +71,12 @@ resource "aws_route53_record" "WURFLjs-green" {
   records = [
     "${aws_elb.WURFLjs-green.dns_name}",
   ]
+
+    set_identifier = "WURFLjs-${var.edition}"
+    latency_routing_policy  {
+        region = "${var.aws_region}"
+    }
+
 }
 
 data "aws_route53_zone" "main" {
