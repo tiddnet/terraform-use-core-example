@@ -1,6 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
-  version = "~>1.7"
+  version                 = "~>1.7"
   shared_credentials_file = "~/.aws/credentials"
   region                  = "${var.aws_region}"
 }
@@ -29,10 +29,8 @@ data "aws_ami" "WURFLjs-green" {
     values = ["Green"]
   }
 
-
   owners = ["self"] # Canonical
 }
-
 
 resource "aws_elb" "WURFLjs-green" {
   name            = "WURFLjs-${var.edition}-green"
@@ -60,23 +58,21 @@ resource "aws_elb" "WURFLjs-green" {
   connection_draining_timeout = 400
 }
 
-
-
-
 resource "aws_route53_record" "WURFLjs-green" {
   zone_id = "${data.aws_route53_zone.main.zone_id}"
   name    = "test2.${data.aws_route53_zone.main.name}"
   type    = "CNAME"
   ttl     = "300"
+
   records = [
     "${aws_elb.WURFLjs-green.dns_name}",
   ]
 
-    set_identifier = "WURFLjs-${var.edition}"
-    latency_routing_policy  {
-        region = "${var.aws_region}"
-    }
+  set_identifier = "WURFLjs-${var.edition}"
 
+  latency_routing_policy {
+    region = "${var.aws_region}"
+  }
 }
 
 data "aws_route53_zone" "main" {
@@ -103,21 +99,23 @@ resource "aws_launch_configuration" "WURFLjs-green" {
                # config: staging-business.yml
                EOF
 
-
   # may want to remove this, or abstract it.
   root_block_device {
     volume_size           = "20"
     volume_type           = "gp2"
     delete_on_termination = true
   }
+
   ephemeral_block_device {
     device_name  = "/dev/xvdb"
     virtual_name = "ephemeral0"
   }
+
   ephemeral_block_device {
     device_name  = "/dev/xvdc"
     virtual_name = "ephemeral1"
   }
+
   lifecycle {
     create_before_destroy = true
   }
