@@ -16,14 +16,14 @@ resource "aws_dynamodb_table" "billing-engine" {
   hash_key       = "pk"
   range_key      = "insert_timestamp"
   read_capacity  = 23
-  write_capacity = 720
+  write_capacity = 32 
 
   global_secondary_index {
     name            = "GLOBAL_INTERNALID_FROMTIMESTAMP"
     hash_key        = "internal_id"
     range_key       = "insert_timestamp"
     read_capacity   = 23
-    write_capacity  = 720
+    write_capacity  = 32
     projection_type = "ALL"
   }
 
@@ -32,7 +32,7 @@ resource "aws_dynamodb_table" "billing-engine" {
     hash_key           = "external_id"
     range_key          = "from_timestamp"
     read_capacity      = 23
-    write_capacity     = 720
+    write_capacity     = 32
     projection_type    = "INCLUDE"
     non_key_attributes = ["measure"]
   }
@@ -41,7 +41,7 @@ resource "aws_dynamodb_table" "billing-engine" {
     name            = "GLOBAL_INSERT_TIMESTAMP"
     hash_key        = "insert_timestamp"
     read_capacity   = 23
-    write_capacity  = 720
+    write_capacity  = 32
     projection_type = "ALL"
   }
 
